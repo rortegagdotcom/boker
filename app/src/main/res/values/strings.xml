@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Boker</string>
+
+    <string name="preferencias_boker">PreferenciasBoker</string>
+    <string name="preferencias_email">Correo</string>
+    <string name="preferencias_isLogin">isLogin</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="menu_categories">Categorias</string>
+    <string name="menu_saved_books">Libros guardados</string>
+    <string name="menu_scan_code">Escanear código ISBN</string>
+    <string name="menu_view_libraries">Ver librerías en Google Maps</string>
+    <string name="menu_settings">Configuración</string>
+    <string name="menu_rate_us">Valóranos</string>
+</resources>

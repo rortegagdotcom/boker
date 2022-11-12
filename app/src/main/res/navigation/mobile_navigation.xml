@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="rortegag.boker.main.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="rortegag.boker.main.ui.categories.CategoriesFragment"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/nav_saved_books"
+        android:name="rortegag.boker.main.ui.saved_books.SavedBooksFragment"
+        android:label="@string/menu_saved_books"
+        tools:layout="@layout/fragment_saved_books" />
+
+    <fragment
+        android:id="@+id/nav_scan_code"
+        android:name="rortegag.boker.main.ui.scan_code.ScanCodeFragment"
+        android:label="@string/menu_scan_code"
+        tools:layout="@layout/fragment_scan_code" />
+
+    <fragment
+        android:id="@+id/nav_view_libraries"
+        android:name="rortegag.boker.main.ui.view_libraries.ViewLibrariesFragment"
+        android:label="@string/menu_view_libraries"
+        tools:layout="@layout/fragment_view_libraries" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="rortegag.boker.main.ui.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+</navigation>
