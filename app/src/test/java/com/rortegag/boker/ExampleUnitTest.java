@@ -1,4 +1,4 @@
-package rortegag.boker;
+package com.rortegag.boker;
 
 import org.junit.Test;
 

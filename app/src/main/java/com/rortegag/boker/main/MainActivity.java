@@ -1,22 +1,19 @@
-package rortegag.boker.main;
+package com.rortegag.boker.main;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.google.android.material.navigation.NavigationView;
-
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
+import com.google.android.material.navigation.NavigationView;
 
-import rortegag.boker.R;
+import com.rortegag.boker.R;
 
 public class MainActivity extends AppCompatActivity {
 

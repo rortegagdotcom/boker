@@ -1,4 +1,4 @@
-package rortegag.boker.main.models.user;
+package com.rortegag.boker.main.models.user;
 
 public class User {
 

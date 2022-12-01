@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardAutoayuda"
+            android:id="@+id/cardSelfHelp"
             android:layout_width="160dp"
             android:layout_height="150dp"
             android:layout_marginStart="8dp"
@@ -25,7 +25,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idAutoayuda"
+                    android:id="@+id/idSelfHelp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -52,7 +52,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/cardAutoayuda"
+            app:layout_constraintEnd_toStartOf="@+id/cardSelfHelp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardErotica">
 
@@ -61,7 +61,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idInfantil"
+                    android:id="@+id/idChildren"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -97,7 +97,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idPoesia"
+                    android:id="@+id/idPoetry"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -205,7 +205,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idCienciaFiccion"
+                    android:id="@+id/idScienceFiction"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -234,14 +234,14 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardAventuras"
-            app:layout_constraintTop_toBottomOf="@+id/txtPorGeneros">
+            app:layout_constraintTop_toBottomOf="@+id/txtByGenre">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idBiografias"
+                    android:id="@+id/idBiographies"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -270,14 +270,14 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/cardBiografias"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPorGeneros">
+            app:layout_constraintTop_toBottomOf="@+id/txtByGenre">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idAventuras"
+                    android:id="@+id/idAventures"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -298,7 +298,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/txtPorGeneros"
+            android:id="@+id/txtByGenre"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="16dp"
@@ -325,7 +325,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idMasgustados"
+                    android:id="@+id/idMostLikes"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -361,7 +361,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idLibrosPeliculas"
+                    android:id="@+id/idBooksMovies"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -397,7 +397,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idMasVendidos"
+                    android:id="@+id/txtBestSeller"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -433,7 +433,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/idMasLeidos"
+                    android:id="@+id/txtMostPopular"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"

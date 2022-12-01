@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bienvenida"
     android:fitsSystemWindows="true"
-    tools:context=".WelcomeScreen">
+    tools:context="com.rortegag.boker.WelcomeScreen">
 
     <ImageView
         android:id="@+id/imgBoker"
@@ -37,7 +37,7 @@
         app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
-        android:id="@+id/txtBienvenida"
+        android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
-        android:id="@+id/txtSubtitulo"
+        android:id="@+id/txtSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="@android:color/black"
@@ -64,41 +64,41 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtBienvenida"
+        app:layout_constraintTop_toBottomOf="@+id/txtWelcome"
         app:layout_constraintVertical_bias="0.05" />
-
-    <Button
-        android:id="@+id/btnSignUp"
-        android:layout_width="160dp"
-        android:layout_height="39dp"
-        android:background="@drawable/rounded_button_brown"
-        android:fontFamily="sans-serif-medium"
-        android:onClick="irARegistrarse"
-        android:text="Registrarse"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSubtitulo"
-        app:layout_constraintVertical_bias="0.659" />
 
     <Button
         android:id="@+id/btnGoToLogIn"
         android:layout_width="160dp"
-        android:layout_height="39dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/rounded_button_white"
         android:fontFamily="sans-serif-medium"
-        android:onClick="irAIniciarSesion"
+        android:onClick="goToLogIn"
         android:text="Iniciar sesión"
         android:textAlignment="center"
-        android:textColor="#CB000000"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnGoToSignUp"
+        android:layout_width="160dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/rounded_button_brown"
+        android:fontFamily="sans-serif-medium"
+        android:onClick="goToSignUp"
+        android:text="Registrarse"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSubtitle"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

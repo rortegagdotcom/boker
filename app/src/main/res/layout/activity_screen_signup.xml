@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bienvenida"
-    tools:context=".SignUpScreen">
+    tools:context="com.rortegag.boker.SignUpScreen">
 
     <Button
         android:id="@+id/btnSignUp"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.9" />
 
     <TextView
-        android:id="@+id/txtUsuario"
+        android:id="@+id/txtUserSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowDx="2"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.2" />
 
     <TextView
-        android:id="@+id/txtContrasenna"
+        android:id="@+id/txtPasswordSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowDx="2"
@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.338" />
 
     <TextView
-        android:id="@+id/txtRepiteContrasenna"
+        android:id="@+id/txtRepeatPasswordSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowDx="2"
@@ -86,7 +86,7 @@
         app:srcCompat="@drawable/boker" />
 
     <TextView
-        android:id="@+id/txtCorreo"
+        android:id="@+id/txtEmailSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/white"
@@ -104,7 +104,7 @@
         app:layout_constraintVertical_bias="0.063" />
 
     <EditText
-        android:id="@+id/editCorreo"
+        android:id="@+id/editEmailSignUp"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -119,7 +119,7 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <EditText
-        android:id="@+id/editUsuario"
+        android:id="@+id/editUserSignUp"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -135,7 +135,7 @@
         app:layout_constraintVertical_bias="0.241" />
 
     <EditText
-        android:id="@+id/editContrasenna"
+        android:id="@+id/editPasswordSignUp"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -148,10 +148,10 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBoker"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintVertical_bias="0.385" />
 
     <EditText
-        android:id="@+id/editRepiteContrasenna"
+        android:id="@+id/editRepeatPasswordSignUp"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -166,7 +166,7 @@
         app:layout_constraintVertical_bias="0.536" />
 
     <CheckBox
-        android:id="@+id/chkCondiciones"
+        android:id="@+id/chkTerms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="@android:color/white"
@@ -184,7 +184,7 @@
         app:layout_constraintVertical_bias="0.669" />
 
     <CheckBox
-        android:id="@+id/chkNoticias"
+        android:id="@+id/chkNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:buttonTint="@android:color/white"

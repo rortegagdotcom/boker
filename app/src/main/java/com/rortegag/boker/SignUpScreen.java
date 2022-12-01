@@ -1,11 +1,5 @@
-package rortegag.boker;
+package com.rortegag.boker;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,18 +9,20 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import androidx.appcompat.app.AppCompatActivity;
 
-import rortegag.boker.main.MainActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.rortegag.boker.main.MainActivity;
+
+import java.util.Objects;
 
 public class SignUpScreen extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Firebase
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     private EditText editEmailSignUp, editUserSignUp, editPasswordSignUp, editRepeatPasswordSignUp;
     private CheckBox chkTerms;
@@ -40,6 +36,10 @@ public class SignUpScreen extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance("https://boker-369819-default-rtdb.europe-west1.firebasedatabase.app");
+        databaseReference = database.getReference("message");
+
+        databaseReference.setValue("Hello, World!");
 
         editEmailSignUp = findViewById(R.id.editEmailSignUp);
         editUserSignUp = findViewById(R.id.editUserSignUp);
@@ -95,17 +95,21 @@ public class SignUpScreen extends AppCompatActivity {
     public void connectSignUpFirebase(String email, String user, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
-                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences_boker), Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(getString(R.string.preferences_user), user);
-                editor.putString(getString(R.string.preferences_email), email);
-                editor.putBoolean(getString(R.string.preferences_is_login), true);
-                editor.apply();
-                finish();
-                startActivity(new Intent(SignUpScreen.this, MainActivity.class));
+                String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+                registerUserToRealtimeDatabase(uid, user, email, password);
             } else {
                 Toast.makeText(SignUpScreen.this, "There was an error creating the user, try again.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(e -> Toast.makeText(SignUpScreen.this, "There was an error creating the user, try again.", Toast.LENGTH_SHORT).show());
+    }
+
+    public void registerUserToRealtimeDatabase(String uid, String user, String email, String password) {
+        /*
+        mFirestore.collection("user").document(uid).set(map).addOnSuccessListener(unused -> {
+            finish();
+            startActivity(new Intent(SignUpScreen.this, MainActivity.class));
+            Toast.makeText(SignUpScreen.this, "You have successfully registered", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> Toast.makeText(SignUpScreen.this, "Error saving user data in the Boker database. Please contact the administrator.", Toast.LENGTH_SHORT).show());
+         */
     }
 }

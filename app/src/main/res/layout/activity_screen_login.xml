@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bienvenida"
-    tools:context=".LoginScreen">
+    tools:context="com.rortegag.boker.LogInScreen">
 
     <ImageView
         android:id="@+id/imgBoker"
@@ -19,12 +19,12 @@
         app:srcCompat="@drawable/boker" />
 
     <Button
-        android:id="@+id/btnInicarSesion"
+        android:id="@+id/btnLogIn"
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:background="@drawable/rounded_button_white"
         android:fontFamily="sans-serif-medium"
-        android:onClick="iniciarSesion"
+        android:onClick="logIn"
         android:text="Iniciar sesión"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <EditText
-        android:id="@+id/editCorreoUsuario"
+        android:id="@+id/editEmailLogIn"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.124" />
 
     <TextView
-        android:id="@+id/txtUsuarioCorreo"
+        android:id="@+id/txtEmailLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowDx="2"
@@ -69,7 +69,7 @@
         app:layout_constraintVertical_bias="0.084" />
 
     <TextView
-        android:id="@+id/txtPassOlvidada"
+        android:id="@+id/txtForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowColor="@android:color/black"
@@ -82,10 +82,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnInicarSesion" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
 
     <EditText
-        android:id="@+id/editContrasenna"
+        android:id="@+id/editPasswordLogIn"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:background="#43FFFFFF"
@@ -102,7 +102,7 @@
         app:layout_constraintVertical_bias="0.324" />
 
     <TextView
-        android:id="@+id/txtContrasenna"
+        android:id="@+id/txtPasswordLogIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:shadowDx="2"

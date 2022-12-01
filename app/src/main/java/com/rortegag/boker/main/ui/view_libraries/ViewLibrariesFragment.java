@@ -1,4 +1,4 @@
-package rortegag.boker.main.ui.view_libraries;
+package com.rortegag.boker.main.ui.view_libraries;
 
 import android.Manifest;
 import android.content.Context;
@@ -21,8 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import rortegag.boker.R;
 
 public class ViewLibrariesFragment extends SupportMapFragment implements OnMapReadyCallback {
 

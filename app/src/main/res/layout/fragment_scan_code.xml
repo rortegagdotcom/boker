@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtEscanear1"
+        android:id="@+id/txtScan"
         android:layout_width="350dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.089" />
 
     <TextView
-        android:id="@+id/txtEscanear2"
+        android:id="@+id/txtScanDescription"
         android:layout_width="350dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
@@ -36,11 +36,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEscanear1"
+        app:layout_constraintTop_toBottomOf="@+id/txtScan"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnEscanear"
+        android:id="@+id/btnScan"
         android:layout_width="125dp"
         android:layout_height="75dp"
         android:layout_marginStart="16dp"
@@ -53,7 +53,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEscanear2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtScanDescription" />
 
     <TextView
         android:id="@+id/txtBarcode"
@@ -63,8 +63,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnEscanear"
+        app:layout_constraintBottom_toTopOf="@+id/btnScan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEscanear2" />
+        app:layout_constraintTop_toBottomOf="@+id/txtScanDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

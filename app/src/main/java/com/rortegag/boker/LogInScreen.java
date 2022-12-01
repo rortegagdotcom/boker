@@ -1,6 +1,5 @@
-package rortegag.boker;
+package com.rortegag.boker;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -14,13 +13,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import rortegag.boker.main.MainActivity;
+import com.rortegag.boker.main.MainActivity;
 
 public class LogInScreen extends AppCompatActivity {
 
@@ -80,11 +75,6 @@ public class LogInScreen extends AppCompatActivity {
     public void connectLogInFirebase(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
-                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences_boker), Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(getString(R.string.preferences_email), email);
-                editor.putBoolean(getString(R.string.preferences_is_login), true);
-                editor.apply();
                 finish();
                 startActivity(new Intent(LogInScreen.this, MainActivity.class));
             } else {

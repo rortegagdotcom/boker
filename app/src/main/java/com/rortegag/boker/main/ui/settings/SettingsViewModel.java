@@ -1,4 +1,4 @@
-package rortegag.boker.main.ui.settings;
+package com.rortegag.boker.main.ui.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
