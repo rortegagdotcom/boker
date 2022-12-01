@@ -14,9 +14,10 @@
         android:layout_height="128dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.104"
+        app:layout_constraintVertical_bias="0.066"
         app:srcCompat="@drawable/boker" />
 
     <TextView
@@ -42,6 +43,7 @@
         android:fontFamily="sans-serif"
         android:shadowColor="@android:color/black"
         android:text="Bienvenid@ a Boker"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -56,45 +58,47 @@
         android:layout_height="wrap_content"
         android:shadowColor="@android:color/black"
         android:text="Sigue los mejores libros, gracias a los lectores"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBienvenida"
-        app:layout_constraintVertical_bias="0.050000012" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <Button
-        android:id="@+id/btnRegistrarse"
+        android:id="@+id/btnSignUp"
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:background="@drawable/rounded_button_brown"
         android:fontFamily="sans-serif-medium"
+        android:onClick="irARegistrarse"
         android:text="Registrarse"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:onClick="irARegistrarse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtSubtitulo"
-        app:layout_constraintVertical_bias="0.35000002" />
+        app:layout_constraintVertical_bias="0.659" />
 
     <Button
-        android:id="@+id/btnIniciarSesion"
+        android:id="@+id/btnGoToLogIn"
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:background="@drawable/rounded_button_white"
         android:fontFamily="sans-serif-medium"
+        android:onClick="irAIniciarSesion"
         android:text="Iniciar sesión"
         android:textAlignment="center"
         android:textColor="#CB000000"
-        android:onClick="irAIniciarSesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegistrarse"
-        app:layout_constraintVertical_bias="0.100000024" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp"
+        app:layout_constraintVertical_bias="0.459" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

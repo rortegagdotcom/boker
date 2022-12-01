@@ -8,11 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -29,7 +26,7 @@ public class ScanCodeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_scan_code, container, false);
 
         super.onCreate(savedInstanceState);
-        btnEscanear = root.findViewById(R.id.btnEscanear);
+        btnEscanear = root.findViewById(R.id.btnScan);
         txtBarCode = root.findViewById(R.id.txtBarcode);
 
         btnEscanear.setOnClickListener(mOnClickListener);
@@ -54,7 +51,7 @@ public class ScanCodeFragment extends Fragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.btnEscanear:
+                case R.id.btnScan:
                     new IntentIntegrator(getActivity()).initiateScan();
             }
         }

@@ -2,6 +2,7 @@ package rortegag.boker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import rortegag.boker.main.MainActivity;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -33,29 +35,24 @@ public class SplashScreen extends AppCompatActivity {
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if(networkInfo != null && networkInfo.isConnected()){
-            SharedPreferences preferencias = getSharedPreferences(getString(R.string.preferencias_boker), Context.MODE_PRIVATE);
-            boolean isLogin = preferencias.getBoolean(getString(R.string.preferencias_isLogin), false);
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preferences_boker), Context.MODE_PRIVATE);
+            boolean isLogin = sharedPreferences.getBoolean(getString(R.string.preferences_is_login), false);
             if(isLogin) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                new Handler().postDelayed(() -> {
+                    finish();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("user", getString(R.string.preferences_user));
+                    bundle.putString("email", getString(R.string.preferences_email));
+                    startActivity(new Intent(SplashScreen.this, MainActivity.class), bundle);
                 }, 4000);
             } else {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(SplashScreen.this, WelcomeScreen.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                new Handler().postDelayed(() -> {
+                    finish();
+                    startActivity(new Intent(SplashScreen.this, WelcomeScreen.class));
                 }, 4000);
             }
         } else {
-            Toast.makeText(getApplicationContext(), "No hay conexión a Internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "No Internet connection", Toast.LENGTH_SHORT).show();
         }
 
     }

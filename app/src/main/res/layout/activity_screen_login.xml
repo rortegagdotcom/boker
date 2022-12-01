@@ -7,16 +7,27 @@
     android:background="@drawable/bienvenida"
     tools:context=".LoginScreen">
 
+    <ImageView
+        android:id="@+id/imgBoker"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/boker" />
+
     <Button
         android:id="@+id/btnInicarSesion"
         android:layout_width="160dp"
         android:layout_height="39dp"
         android:background="@drawable/rounded_button_white"
         android:fontFamily="sans-serif-medium"
+        android:onClick="iniciarSesion"
         android:text="Iniciar sesión"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:onClick="iniciarSesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,44 +38,35 @@
         android:id="@+id/editCorreoUsuario"
         android:layout_width="350dp"
         android:layout_height="40dp"
+        android:background="#43FFFFFF"
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:inputType="textPersonName"
-        android:shadowColor="@android:color/black"
-        android:textColor="@android:color/white"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBoker"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintVertical_bias="0.124" />
 
     <TextView
         android:id="@+id/txtUsuarioCorreo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="@android:color/black"
         android:shadowDx="2"
         android:shadowDy="5"
         android:shadowRadius="10"
         android:text="Usuario o correo electrónico"
-        android:textColor="@android:color/holo_orange_light"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBoker"
-        app:layout_constraintVertical_bias="0.045" />
-
-    <ImageView
-        android:id="@+id/imgBoker"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003"
-        app:srcCompat="@drawable/boker" />
+        app:layout_constraintVertical_bias="0.084" />
 
     <TextView
         android:id="@+id/txtPassOlvidada"
@@ -75,6 +77,7 @@
         android:shadowDy="5"
         android:shadowRadius="10"
         android:text="¿Olvidastes tu usuario o contraseña?"
+        android:textAlignment="center"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,31 +88,33 @@
         android:id="@+id/editContrasenna"
         android:layout_width="350dp"
         android:layout_height="40dp"
+        android:background="#43FFFFFF"
         android:backgroundTint="@android:color/white"
         android:ems="10"
         android:inputType="textPassword"
-        android:shadowColor="@android:color/black"
-        android:textColor="@android:color/white"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBoker"
-        app:layout_constraintVertical_bias="0.327" />
+        app:layout_constraintVertical_bias="0.324" />
 
     <TextView
         android:id="@+id/txtContrasenna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:shadowColor="@android:color/black"
         android:shadowDx="2"
         android:shadowDy="5"
         android:shadowRadius="10"
         android:text="Contraseña"
-        android:textColor="@android:color/holo_orange_light"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBoker"
-        app:layout_constraintVertical_bias="0.237" />
+        app:layout_constraintVertical_bias="0.277" />
 </androidx.constraintlayout.widget.ConstraintLayout>
