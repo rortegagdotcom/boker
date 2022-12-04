@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.models.books;
+package com.rortegag.boker.models.books;
 
 public class Books {
     private String name;

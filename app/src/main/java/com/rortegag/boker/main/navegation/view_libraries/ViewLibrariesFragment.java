@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.ui.view_libraries;
+package com.rortegag.boker.main.navegation.view_libraries;
 
 import android.Manifest;
 import android.content.Context;

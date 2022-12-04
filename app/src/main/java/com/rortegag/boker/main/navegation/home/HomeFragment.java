@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.ui.home;
+package com.rortegag.boker.main.navegation.home;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

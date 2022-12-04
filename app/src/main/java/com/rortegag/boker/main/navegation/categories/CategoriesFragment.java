@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.ui.categories;
+package com.rortegag.boker.main.navegation.categories;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

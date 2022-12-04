@@ -37,12 +37,12 @@ public class SplashScreen extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser mUser = mAuth.getCurrentUser();
 
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if(networkInfo != null && networkInfo.isConnected()){
-            if(user != null) {
+            if(mUser != null) {
                 new Handler().postDelayed(() -> {
                     finish();
                     startActivity(new Intent(SplashScreen.this, MainActivity.class));

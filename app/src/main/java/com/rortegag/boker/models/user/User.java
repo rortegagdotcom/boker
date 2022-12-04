@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.models.user;
+package com.rortegag.boker.models.user;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -9,8 +9,24 @@ public class User {
 
     public User() {}
 
-    public User(String userName, String email) {
+    public User(String username, String email) {
+        this.userName = username;
+        this.email = email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 }

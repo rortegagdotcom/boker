@@ -1,5 +1,8 @@
 package com.rortegag.boker;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -15,14 +18,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rortegag.boker.main.MainActivity;
+import com.rortegag.boker.models.user.User;
 
 import java.util.Objects;
 
 public class SignUpScreen extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
+    private SharedPreferences sharedPreferences;
 
     private EditText editEmailSignUp, editUserSignUp, editPasswordSignUp, editRepeatPasswordSignUp;
     private CheckBox chkTerms;
@@ -36,10 +41,10 @@ public class SignUpScreen extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
         mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance("https://boker-369819-default-rtdb.europe-west1.firebasedatabase.app");
-        databaseReference = database.getReference("message");
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://boker-369819-default-rtdb.europe-west1.firebasedatabase.app");
+        databaseReference = database.getReference();
 
-        databaseReference.setValue("Hello, World!");
+        sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences_boker), Context.MODE_PRIVATE);
 
         editEmailSignUp = findViewById(R.id.editEmailSignUp);
         editUserSignUp = findViewById(R.id.editUserSignUp);
@@ -49,7 +54,6 @@ public class SignUpScreen extends AppCompatActivity {
         chkTerms = findViewById(R.id.chkTerms);
 
         Button btnSignUp = findViewById(R.id.btnSignUp);
-
         btnSignUp.setOnClickListener(this::signUp);
     }
 
@@ -75,11 +79,11 @@ public class SignUpScreen extends AppCompatActivity {
 
     public void signUp(View view) {
         String email = editEmailSignUp.getText().toString().trim();
-        String user = editUserSignUp.getText().toString().trim();
+        String userName = editUserSignUp.getText().toString().trim();
         String password = editPasswordSignUp.getText().toString().trim();
         String repeatPassword = editRepeatPasswordSignUp.getText().toString().trim();
 
-        if(email.isEmpty() && user.isEmpty() && password.isEmpty() && repeatPassword.isEmpty()) {
+        if(email.isEmpty() && userName.isEmpty() && password.isEmpty() && repeatPassword.isEmpty()) {
             Toast.makeText(this, "Some of the fields are empty.", Toast.LENGTH_SHORT).show();
         } else if(email.matches("^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$")) {
             Toast.makeText(this, "The email address is not correct.", Toast.LENGTH_SHORT).show();
@@ -88,28 +92,29 @@ public class SignUpScreen extends AppCompatActivity {
         } else if(!chkTerms.isChecked()) {
             Toast.makeText(this, "Please agree to Boker's terms and conditions.", Toast.LENGTH_SHORT).show();
         } else {
-            connectSignUpFirebase(email, user, password);
+            connectSignUpFirebase(email, userName, password);
         }
     }
 
-    public void connectSignUpFirebase(String email, String user, String password) {
+    public void connectSignUpFirebase(String email, String userName, String password) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if(task.isSuccessful()) {
                 String uid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                registerUserToRealtimeDatabase(uid, user, email, password);
+                writeUserToRealtimeDatabase(uid, userName, email);
+                finish();
+                startActivity(new Intent(SignUpScreen.this, MainActivity.class));
             } else {
-                Toast.makeText(SignUpScreen.this, "There was an error creating the user, try again.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpScreen.this, "This user exists on Boker", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(e -> Toast.makeText(SignUpScreen.this, "There was an error creating the user, try again.", Toast.LENGTH_SHORT).show());
     }
 
-    public void registerUserToRealtimeDatabase(String uid, String user, String email, String password) {
-        /*
-        mFirestore.collection("user").document(uid).set(map).addOnSuccessListener(unused -> {
-            finish();
-            startActivity(new Intent(SignUpScreen.this, MainActivity.class));
-            Toast.makeText(SignUpScreen.this, "You have successfully registered", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e -> Toast.makeText(SignUpScreen.this, "Error saving user data in the Boker database. Please contact the administrator.", Toast.LENGTH_SHORT).show());
-         */
+    public void writeUserToRealtimeDatabase(String uid, String userName, String email) {
+        User user = new User(userName, email);
+        databaseReference.child("users").child(uid).setValue(user);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(getString(R.string.preferences_userName), userName);
+        editor.putString(getString(R.string.preferences_email), email);
+        editor.apply();
     }
 }

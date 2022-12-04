@@ -1,7 +1,12 @@
 package com.rortegag.boker.main;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -14,6 +19,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import com.rortegag.boker.R;
+import com.rortegag.boker.models.user.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,11 +37,24 @@ public class MainActivity extends AppCompatActivity {
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_categories, R.id.nav_saved_books,
                 R.id.nav_scan_code, R.id.nav_view_libraries, R.id.nav_settings)
-                .setDrawerLayout(drawer)
+                .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        View v = navigationView.getHeaderView(0);
+
+        User user = new User();
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preferences_boker), Context.MODE_PRIVATE);
+        user.setUserName(sharedPreferences.getString(getString(R.string.preferences_userName), "user"));
+        user.setEmail(sharedPreferences.getString(getString(R.string.preferences_email), "email"));
+
+        TextView txtUser = v.findViewById(R.id.txtUser);
+        TextView txtEmail = v.findViewById(R.id.txtEmail);
+
+        txtUser.setText(user.getUserName());
+        txtEmail.setText(user.getEmail());
     }
 
     @Override
@@ -49,4 +68,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
