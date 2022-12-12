@@ -18,6 +18,21 @@ public class CategoriesFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_categories, container, false);
 
+        /*
+                List<Volume> googleVolumes = googleBooks.volumes().list("category:'Young Adult'").execute().getItems();
+                try {
+                    for (Volume volume : googleVolumes) {
+                        Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+                        List<String> categories = volumeInfo.getCategories();
+                        for (String category : categories) {
+                            Log.e("category", category.trim());
+                        }
+                    }
+                } catch (NullPointerException e) {
+                    Log.e("category", "NA");
+                }
+                */
+
         return root;
     }
 }

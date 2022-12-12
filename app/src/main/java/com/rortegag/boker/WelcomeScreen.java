@@ -4,9 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.books.v1.Books;
+import com.google.api.services.books.v1.model.Volume;
+
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.List;
 
 public class WelcomeScreen extends AppCompatActivity {
 

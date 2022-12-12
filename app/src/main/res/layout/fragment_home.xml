@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/cardLatestSearches"
             android:layout_width="match_parent"
             android:layout_height="440dp"
             android:layout_marginStart="8dp"
@@ -26,39 +25,31 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgLatestSearches"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:background="@color/colorPrimary"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-
-                </ImageView>
-
                 <TextView
                     android:id="@+id/txtSynopsisLatestSearches"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="390dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Sinopsis"
+                    android:layout_marginBottom="8dp"
+                    android:scrollbars="vertical"
+                    android:text=""
+                    app:layout_constraintBottom_toTopOf="@+id/txtGenreLatestSearches"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgLatestSearches" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/txtGenreLatestSearches"
-                    android:layout_width="match_parent"
+                    android:layout_width="380dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Genero"
+                    android:text=""
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSynopsisLatestSearches" />
@@ -67,7 +58,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardRecommended"
             android:layout_width="match_parent"
             android:layout_height="440dp"
             android:layout_marginStart="8dp"
@@ -83,39 +74,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgRecommended"
-                    android:layout_width="match_parent"
-                    android:layout_height="280dp"
-                    android:background="@color/colorPrimary"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0">
-
-                </ImageView>
-
                 <TextView
                     android:id="@+id/txtSynopsisRecommended"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="390dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Sinopsis"
+                    android:layout_marginBottom="8dp"
+                    android:scrollbars="vertical"
+                    android:text=""
+                    app:layout_constraintBottom_toTopOf="@+id/txtGenreRecommended"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imgRecommended" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/idGenreRecommended"
-                    android:layout_width="match_parent"
+                    android:id="@+id/txtGenreRecommended"
+                    android:layout_width="380dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Genero"
+                    android:text=""
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSynopsisRecommended" />
@@ -131,8 +113,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="Recomendados por Boker"
+            android:layout_marginBottom="8dp"
+            android:text="Recommended by Boker"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardRecommended"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.04"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,12 +128,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="Ultimas busquedas por los usuarios"
+            android:layout_marginBottom="8dp"
+            android:text="Latest searches by users"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardLatestSearches"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            app:layout_constraintTop_toBottomOf="@+id/cardRecommended" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

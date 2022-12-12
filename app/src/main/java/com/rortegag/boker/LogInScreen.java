@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,9 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.database.DataSnapshot;
@@ -95,8 +91,6 @@ public class LogInScreen extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
                 readUserToRealtimeDatabase(email);
-                finish();
-                startActivity(new Intent(LogInScreen.this, MainActivity.class));
             } else {
                 Toast.makeText(LogInScreen.this, "Email or password incorrect.", Toast.LENGTH_SHORT).show();
             }
@@ -111,15 +105,24 @@ public class LogInScreen extends AppCompatActivity {
                 if(snapshot.exists()) {
                     DataSnapshot userBoker = snapshot.getChildren().iterator().next();
                     User user = userBoker.getValue(User.class);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(getString(R.string.preferences_userName), user.getUserName());
-                    editor.putString(getString(R.string.preferences_email), user.getEmail());
-                    editor.apply();
+                    if (user != null) {
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(getString(R.string.preferences_uid), userBoker.getKey());
+                        editor.putString(getString(R.string.preferences_userName), user.getUserName());
+                        editor.putString(getString(R.string.preferences_email), user.getEmail());
+                        editor.apply();
+                        finish();
+                        startActivity(new Intent(LogInScreen.this, MainActivity.class));
+                    } else {
+                        Toast.makeText(LogInScreen.this, "Error reading user data.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(LogInScreen.this, "Error reading user data.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 }

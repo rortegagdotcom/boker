@@ -3,6 +3,10 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+repositories {
+    mavenCentral()
+}
+
 android {
     compileSdkVersion 33
     defaultConfig {
@@ -32,14 +36,25 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
+    implementation ('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.http-client:google-http-client-jackson2:1.42.3'
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'com.google.apis:google-api-services-books:v1-rev20201021-1.32.1'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test:runner:1.5.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    configurations.all {
+        exclude group: 'com.google.guava', module: 'guava-jdk5'
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
 }
