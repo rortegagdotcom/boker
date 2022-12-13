@@ -33,8 +33,8 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:scrollbars="vertical"
                     android:text=""
+                    android:maxLines="20"
                     app:layout_constraintBottom_toTopOf="@+id/txtGenreLatestSearches"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -53,6 +53,20 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSynopsisLatestSearches" />
+
+                <ProgressBar
+                    android:id="@+id/progressLatestSearches"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="128dp"
+                    android:layout_marginTop="128dp"
+                    android:layout_marginEnd="128dp"
+                    android:layout_marginBottom="128dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtSynopsisLatestSearches"
+                    app:layout_constraintEnd_toEndOf="@+id/txtSynopsisLatestSearches"
+                    app:layout_constraintStart_toStartOf="@+id/txtSynopsisLatestSearches"
+                    app:layout_constraintTop_toTopOf="@+id/txtSynopsisLatestSearches" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -82,8 +96,8 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
-                    android:scrollbars="vertical"
                     android:text=""
+                    android:maxLines="20"
                     app:layout_constraintBottom_toTopOf="@+id/txtGenreRecommended"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +116,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtSynopsisRecommended" />
 
+                <ProgressBar
+                    android:id="@+id/progressRecommended"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="128dp"
+                    android:layout_marginTop="128dp"
+                    android:layout_marginEnd="128dp"
+                    android:layout_marginBottom="128dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtSynopsisRecommended"
+                    app:layout_constraintEnd_toEndOf="@+id/txtSynopsisRecommended"
+                    app:layout_constraintStart_toStartOf="@+id/txtSynopsisRecommended"
+                    app:layout_constraintTop_toTopOf="@+id/txtSynopsisRecommended" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -114,7 +142,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Recommended by Boker"
+            android:text="@string/recommended_by_boker"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/cardRecommended"
             app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +157,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="Latest searches by users"
+            android:text="@string/latest_search_by_users"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/cardLatestSearches"
             app:layout_constraintEnd_toEndOf="parent"

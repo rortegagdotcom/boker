@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.navegation.scan_code;
+package com.rortegag.boker.main.navigation.scan_code;
 
 import android.content.Intent;
 import android.os.Bundle;

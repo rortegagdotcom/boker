@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.navegation.settings;
+package com.rortegag.boker.main.navigation.settings;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

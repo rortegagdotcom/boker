@@ -1,4 +1,4 @@
-package com.rortegag.boker.main.navegation.saved_books;
+package com.rortegag.boker.main.navigation.saved_books;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

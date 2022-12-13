@@ -1,14 +1,14 @@
-package com.rortegag.boker.main.navegation.home;
+package com.rortegag.boker.main.navigation.home;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
@@ -31,8 +31,9 @@ public class HomeFragment extends Fragment {
     private List<Book> bookList;
 
     private TextView txtSynopsisRecommended, txtSynopsisLatestSearches, txtGenreRecommended, txtGenreLatestSearches;
+    private ProgressBar progressRecommended, progressLatestSearches;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         bookList = new ArrayList<>();
@@ -40,6 +41,8 @@ public class HomeFragment extends Fragment {
         txtGenreRecommended = root.findViewById(R.id.txtGenreRecommended);
         txtSynopsisLatestSearches = root.findViewById(R.id.txtSynopsisLatestSearches);
         txtGenreLatestSearches = root.findViewById(R.id.txtGenreLatestSearches);
+        progressRecommended = root.findViewById(R.id.progressRecommended);
+        progressLatestSearches = root.findViewById(R.id.progressLatestSearches);
 
         LoadBooksTask loadBooksTask = new LoadBooksTask();
 
@@ -60,7 +63,7 @@ public class HomeFragment extends Fragment {
                         .setApplicationName("Boker")
                         .build();
                 List<Volume> googleVolumes = getListVolume(googleBooks);
-                String title, isbn, genre, author, synopsis;
+                String title, isbn, genre, author, synopsis, enhancedSynopsis;
                 for (Volume volume : googleVolumes) {
                     try {
                         title = volume.getVolumeInfo().getTitle();
@@ -89,7 +92,12 @@ public class HomeFragment extends Fragment {
                     }
                     try {
                         if (title != null || isbn != null || genre != null || author != null || synopsis != null || !title.isEmpty() || !isbn.isEmpty() || !genre.isEmpty() || !author.isEmpty() || !synopsis.isEmpty()) {
-                            bookList.add(new Book(title, isbn, genre, author, synopsis));
+                            try {
+                                enhancedSynopsis = synopsis.replace(". ", ".\n\n");
+                            } catch (NullPointerException e) {
+                                enhancedSynopsis = synopsis;
+                            }
+                            bookList.add(new Book(title, isbn, genre, author, enhancedSynopsis));
                         }
                     } catch (NullPointerException e) {
                         Toast.makeText(getContext(), "Error when entering when displaying the book data.", Toast.LENGTH_SHORT).show();
@@ -104,8 +112,10 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Book> books) {
+            progressRecommended.setVisibility(View.GONE);
             txtSynopsisRecommended.setText(books.get(0).getSynopsis());
             txtGenreRecommended.setText(books.get(0).getGenre());
+            progressLatestSearches.setVisibility(View.GONE);
             txtSynopsisLatestSearches.setText(books.get(1).getSynopsis());
             txtGenreLatestSearches.setText(books.get(1).getGenre());
         }
