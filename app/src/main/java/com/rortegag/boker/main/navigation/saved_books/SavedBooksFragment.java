@@ -4,42 +4,66 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rortegag.boker.R;
+import com.rortegag.boker.models.book.Book;
 
 public class SavedBooksFragment extends Fragment {
 
-    private ListView listBooks;
-    private ArrayList<Map<String,Object>> savedBooks;
-    private String[] titleArr = {"Libro 1", "Libro 2", "Libro 3", "Libro 4", "Libro 5"};
-    private String[] autorArr = {"Autor 1", "Autor 2", "Autor 3", "Autor 4", "Autor 5"};
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+
+    private ListView listListBook;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         View root = inflater.inflate(R.layout.fragment_saved_books, container, false);
-        listBooks = root.findViewById(R.id.listBooks);
-        savedBooks = new ArrayList<Map<String,Object>>();
+        listListBook = root.findViewById(R.id.listListBook);
 
-        for(int i=0;i<titleArr.length;i++) {
-            Map<String,Object> listItemMap = new HashMap<String,Object>();
-            listItemMap.put("Titulo", titleArr[i]);
-            listItemMap.put("Autor", autorArr[i]);
-            savedBooks.add(listItemMap);
-        }
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("listbooks");
 
-        SimpleAdapter adapter = new SimpleAdapter(this.getContext(), savedBooks, android.R.layout.simple_list_item_2, new String[]{"Titulo", "Autor"}, new int[]{android.R.id.text1, android.R.id.text2});
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Book> books = new ArrayList<>();
+                for (DataSnapshot bookSnapshot : snapshot.child(firebaseAuth.getUid()).getChildren()) {
+                    String title = bookSnapshot.child("title").getValue(String.class);
+                    String isbn = bookSnapshot.child("isbn").getValue(String.class);
+                    String genre = bookSnapshot.child("genre").getValue(String.class);
+                    String author = bookSnapshot.child("author").getValue(String.class);
+                    String synopsis = bookSnapshot.child("synopsis").getValue(String.class);
+                    books.add(new Book(title, isbn, genre, author, synopsis));
+                }
+                
+            }
 
-        listBooks.setAdapter(adapter);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         return root;
     }

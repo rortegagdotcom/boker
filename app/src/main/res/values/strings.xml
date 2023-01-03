@@ -11,6 +11,7 @@
     <string name="recommended_by_boker">Recommended by Boker</string>
     <string name="latest_search_by_users">Latest searches by users</string>
 
+    <string name="description_genres">Search by literary genres</string>
     <string name="card_genre_autobiography_biography">Autobiography &amp; Biography</string>
     <string name="card_genre_essay">Essay</string>
     <string name="card_genre_fable">Fable</string>
@@ -22,6 +23,7 @@
     <string name="card_genre_story">Story</string>
     <string name="card_genre_theater">Theater</string>
 
+    <string name="description_categories">Search by most searched categories in Google Books</string>
     <string name="card_category_agriculture">Agriculture</string>
     <string name="card_category_art">Art</string>
     <string name="card_category_architecture">Architecture</string>

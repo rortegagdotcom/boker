@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rortegag.boker.main.MainActivity;
 import com.rortegag.boker.models.book.Book;
-import com.rortegag.boker.models.listbook.ListBook;
 import com.rortegag.boker.models.user.User;
 
 import java.util.ArrayList;
@@ -116,9 +115,8 @@ public class SignUpScreen extends AppCompatActivity {
     public void writeUserToRealtimeDatabase(String uid, String userName, String email) {
         User user = new User(userName, email);
         List<Book> userBooks = new ArrayList<>();
-        ListBook listbook = new ListBook(user, userBooks);
         databaseReference.child("users").child(uid).setValue(user);
-        databaseReference.child("listbooks").child(uid).setValue(listbook);
+        databaseReference.child("listbooks").setValue(uid);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(getString(R.string.preferences_uid), uid);
         editor.putString(getString(R.string.preferences_userName), userName);

@@ -1,15 +1,16 @@
-package com.rortegag.boker.main.navigation.home;
+package com.rortegag.boker.main;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
 
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.HttpTransport;
@@ -19,6 +20,7 @@ import com.google.api.services.books.v1.Books;
 import com.google.api.services.books.v1.BooksRequestInitializer;
 import com.google.api.services.books.v1.model.Volume;
 import com.rortegag.boker.R;
+import com.rortegag.boker.main.navigation.home.HomeFragment;
 import com.rortegag.boker.models.book.Book;
 
 import java.io.IOException;
@@ -26,36 +28,68 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class ViewSynopsisActivity extends AppCompatActivity {
+
+    private TextView txtViewSynopsis;
+    private ImageView imgBackSynopsis, imgViewBook, imgNextSynopsis;
 
     private List<Book> bookList;
 
-    private TextView
-            txtSynopsisRecommended,
-            txtSynopsisLatestSearches,
-            txtGenreRecommended,
-            txtGenreLatestSearches;
-    private ProgressBar progressRecommended, progressLatestSearches;
+    private int i = 0;
 
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_synopsis);
+        txtViewSynopsis = findViewById(R.id.txtViewSynopsis);
+        imgBackSynopsis = findViewById(R.id.imgBackSynopsis);
+        imgViewBook = findViewById(R.id.imgViewBook);
+        imgNextSynopsis = findViewById(R.id.imgNextSynopsis);
         bookList = new ArrayList<>();
-        txtSynopsisRecommended = root.findViewById(R.id.txtSynopsisRecommended);
-        txtGenreRecommended = root.findViewById(R.id.txtGenreRecommended);
-        txtSynopsisLatestSearches = root.findViewById(R.id.txtSynopsisLatestSearches);
-        txtGenreLatestSearches = root.findViewById(R.id.txtGenreLatestSearches);
-        progressRecommended = root.findViewById(R.id.progressRecommended);
-        progressLatestSearches = root.findViewById(R.id.progressLatestSearches);
 
-        LoadBooksTask loadBooksTask = new LoadBooksTask();
+        LoadBooksTask loadBooksTask = new LoadBooksTask(this, getIntent().getExtras());
 
         loadBooksTask.execute();
 
-        return root;
+        imgBackSynopsis.setOnClickListener(v -> {
+            try {
+                txtViewSynopsis.setText(bookList.get(i--).getSynopsis());
+            } catch (IndexOutOfBoundsException e) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        imgViewBook.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("book", bookList.get(i));
+            Intent intent = new Intent(this, ViewBookActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        });
+
+        imgNextSynopsis.setOnClickListener(v -> {
+            try {
+                txtViewSynopsis.setText(bookList.get(i++).getSynopsis());
+            } catch (IndexOutOfBoundsException e) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(this, "No more books to display.", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 
     private class LoadBooksTask extends AsyncTask<Void, Void, List<Book>> {
+
+        private Context context;
+        private Bundle bundleType;
+
+        public LoadBooksTask(Context context, Bundle bundleType) {
+            this.context = context;
+            this.bundleType = bundleType;
+        }
 
         @Override
         protected List<Book> doInBackground(Void... voids) {
@@ -81,7 +115,7 @@ public class HomeFragment extends Fragment {
                         } else if (volume.getVolumeInfo().getIndustryIdentifiers().get(1).getType().contentEquals("ISBN_13")) {
                             isbn = volume.getVolumeInfo().getIndustryIdentifiers().get(1).getIdentifier();
                         }
-                    } catch (NullPointerException e) {
+                    } catch (IndexOutOfBoundsException | NullPointerException e) {
                         isbn = null;
                     }
                     try {
@@ -109,11 +143,11 @@ public class HomeFragment extends Fragment {
                             bookList.add(new Book(title, isbn, genre, author, enhancedSynopsis));
                         }
                     } catch (NullPointerException e) {
-                        Toast.makeText(getContext(), "Error when entering when displaying the book data.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Error when entering when displaying the book data.", Toast.LENGTH_SHORT).show();
                     }
                 }
             } catch (GeneralSecurityException | IOException e) {
-                Toast.makeText(getContext(), "Error when getting data from Google Books API.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error when getting data from Google Books API.", Toast.LENGTH_SHORT).show();
             }
 
             return bookList;
@@ -121,21 +155,23 @@ public class HomeFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<Book> books) {
-            progressRecommended.setVisibility(View.GONE);
-            txtSynopsisRecommended.setText(books.get(0).getSynopsis());
-            txtGenreRecommended.setText(books.get(0).getGenre());
-            progressLatestSearches.setVisibility(View.GONE);
-            txtSynopsisLatestSearches.setText(books.get(1).getSynopsis());
-            txtGenreLatestSearches.setText(books.get(1).getGenre());
+            txtViewSynopsis.setText(books.get(i).getSynopsis());
         }
 
         private List<Volume> getListVolume(Books googleBooks) {
+            String type;
+            if (bundleType.containsKey("category")) {
+                type = bundleType.getString("category");
+            } else if (bundleType.containsKey("genre")) {
+                type = bundleType.getString("genre");
+            } else {
+                type = "NA";
+            }
             List<Volume> googleVolumes = null;
             try {
                 do {
                     googleVolumes = googleBooks.volumes()
-                            .list("language:english")
-                            .setMaxResults(2L)
+                            .list(type + "+language:english")
                             .execute()
                             .getItems();
                 } while (googleVolumes == null || googleVolumes.isEmpty());
@@ -143,4 +179,5 @@ public class HomeFragment extends Fragment {
             return googleVolumes;
         }
     }
+
 }
